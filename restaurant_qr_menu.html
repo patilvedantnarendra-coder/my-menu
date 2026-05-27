@@ -1,0 +1,416 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .menu-wrap {
+    font-family: 'DM Sans', sans-serif;
+    background: #0f0d0a;
+    color: #f5f0e8;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  .hero {
+    background: linear-gradient(160deg, #1a1208 0%, #2c1f0e 60%, #0f0d0a 100%);
+    padding: 2rem 1.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #3a2e1a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(220,160,60,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo-ring {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 2px solid #c8922a;
+    margin: 0 auto 1rem;
+    background: #1e1509;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #dca83c;
+    letter-spacing: -1px;
+    box-shadow: 0 0 0 6px rgba(200,146,42,0.08);
+  }
+
+  .resto-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: #f5e8c8;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+
+  .tagline {
+    font-size: 13px;
+    color: #a08860;
+    margin-top: 4px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(200,146,42,0.12);
+    border: 0.5px solid rgba(200,146,42,0.35);
+    color: #c8922a;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c8922a;
+    padding: 1.5rem 1.5rem 0.75rem;
+    border-bottom: 0.5px solid #2a2218;
+  }
+
+  .menu-grid {
+    padding: 0.5rem 1rem;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 0.5px solid #1e1a12;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .menu-item:hover {
+    background: rgba(200,146,42,0.05);
+  }
+
+  .item-emoji {
+    font-size: 36px;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #1a1509;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0.5px solid #2a2218;
+  }
+
+  .item-info { flex: 1; }
+
+  .item-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #f0e8d4;
+    margin-bottom: 2px;
+  }
+
+  .item-desc {
+    font-size: 12px;
+    color: #7a6848;
+    line-height: 1.4;
+  }
+
+  .item-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+  }
+
+  .item-tag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .tag-veg { background: rgba(60,160,80,0.15); color: #5cb87a; border: 0.5px solid rgba(60,160,80,0.2); }
+  .tag-spicy { background: rgba(220,80,40,0.15); color: #e06040; border: 0.5px solid rgba(220,80,40,0.2); }
+  .tag-new { background: rgba(200,146,42,0.15); color: #c8922a; border: 0.5px solid rgba(200,146,42,0.2); }
+  .tag-special { background: rgba(140,90,200,0.15); color: #b080e0; border: 0.5px solid rgba(140,90,200,0.2); }
+
+  .item-right { text-align: right; flex-shrink: 0; }
+
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: #dca83c;
+    font-weight: 700;
+  }
+
+  .add-btn {
+    display: block;
+    margin-top: 6px;
+    background: none;
+    border: 0.5px solid #3a2e1a;
+    color: #a08860;
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.15s;
+    margin-left: auto;
+  }
+
+  .add-btn:hover {
+    background: rgba(200,146,42,0.15);
+    border-color: #c8922a;
+    color: #c8922a;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    padding: 1rem 1rem 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .filter-btn {
+    background: #1a1509;
+    border: 0.5px solid #2a2218;
+    color: #7a6848;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .filter-btn.active {
+    background: rgba(200,146,42,0.15);
+    border-color: rgba(200,146,42,0.5);
+    color: #c8922a;
+  }
+
+  .order-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem 1.5rem;
+    background: #0f0d0a;
+    border-top: 0.5px solid #2a2218;
+    display: flex;
+    gap: 10px;
+  }
+
+  .order-btn {
+    flex: 1;
+    background: #c8922a;
+    color: #0f0d0a;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 14px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.15s;
+  }
+
+  .order-btn:hover { background: #dca83c; }
+
+  .call-btn {
+    width: 50px; height: 50px;
+    background: #1a1509;
+    border: 0.5px solid #3a2e1a;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: #c8922a;
+    font-size: 20px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+
+  .call-btn:hover { background: rgba(200,146,42,0.12); }
+
+  .divider-label {
+    text-align: center;
+    color: #3a2e1a;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 1.5rem 0;
+  }
+</style>
+
+<div class="menu-wrap">
+
+  <div class="hero">
+    <div class="logo-ring">🍽</div>
+    <div class="resto-name">Spice Garden</div>
+    <div class="tagline">Authentic Indian Cuisine</div>
+    <div class="hero-badges">
+      <span class="badge">📍 Table 7</span>
+      <span class="badge">⏱ Open till 11 PM</span>
+      <span class="badge">⭐ 4.8 Rated</span>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterMenu('all', this)">All Items</button>
+    <button class="filter-btn" onclick="filterMenu('starters', this)">Starters</button>
+    <button class="filter-btn" onclick="filterMenu('mains', this)">Mains</button>
+    <button class="filter-btn" onclick="filterMenu('breads', this)">Breads</button>
+    <button class="filter-btn" onclick="filterMenu('drinks', this)">Drinks</button>
+    <button class="filter-btn" onclick="filterMenu('desserts', this)">Desserts</button>
+  </div>
+
+  <div id="menu-container"></div>
+
+  <div class="order-bar">
+    <button class="call-btn" title="Call waiter" onclick="alert('Calling your waiter...')">
+      <i class="ti ti-phone" aria-hidden="true"></i>
+    </button>
+    <button class="order-btn" onclick="placeOrder()">
+      🛒 Place Order · <span id="cart-count">0 items</span>
+    </button>
+  </div>
+
+</div>
+
+<script>
+const menuData = {
+  starters: {
+    label: "Starters",
+    items: [
+      { name: "Paneer Tikka", desc: "Soft cottage cheese marinated in yogurt & spices, grilled in tandoor", price: 220, emoji: "🧆", tags: ["veg", "special"] },
+      { name: "Chicken 65", desc: "Crispy spicy chicken bites, curry leaves, green chilli", price: 260, emoji: "🍗", tags: ["spicy"] },
+      { name: "Veg Spring Rolls", desc: "Crispy rolls filled with crunchy vegetables & noodles", price: 180, emoji: "🥢", tags: ["veg"] },
+      { name: "Seekh Kebab", desc: "Minced lamb kebab with herbs, served with mint chutney", price: 300, emoji: "🍢", tags: ["new"] }
+    ]
+  },
+  mains: {
+    label: "Main Course",
+    items: [
+      { name: "Butter Chicken", desc: "Tender chicken in rich tomato-butter gravy with cream", price: 320, emoji: "🍛", tags: ["special"] },
+      { name: "Dal Makhani", desc: "Black lentils slow-cooked overnight with butter & cream", price: 240, emoji: "🥣", tags: ["veg"] },
+      { name: "Mutton Rogan Josh", desc: "Aromatic Kashmiri lamb curry, fragrant whole spices", price: 380, emoji: "🍲", tags: ["spicy"] },
+      { name: "Palak Paneer", desc: "Fresh spinach gravy with cubes of cottage cheese", price: 260, emoji: "🥬", tags: ["veg", "new"] }
+    ]
+  },
+  breads: {
+    label: "Breads & Rice",
+    items: [
+      { name: "Butter Naan", desc: "Soft leavened bread baked in tandoor, brushed with butter", price: 60, emoji: "🫓", tags: ["veg"] },
+      { name: "Garlic Roti", desc: "Whole wheat bread with garlic & coriander", price: 50, emoji: "🥙", tags: ["veg"] },
+      { name: "Jeera Rice", desc: "Basmati rice tempered with cumin seeds & ghee", price: 120, emoji: "🍚", tags: ["veg"] }
+    ]
+  },
+  drinks: {
+    label: "Drinks",
+    items: [
+      { name: "Mango Lassi", desc: "Chilled yogurt blended with sweet Alphonso mango", price: 120, emoji: "🥭", tags: ["veg"] },
+      { name: "Masala Chai", desc: "Traditional Indian spiced milk tea, freshly brewed", price: 60, emoji: "🍵", tags: ["veg"] },
+      { name: "Fresh Lime Soda", desc: "Sparkling water with lime juice, salt or sugar", price: 80, emoji: "🍋", tags: ["veg", "new"] }
+    ]
+  },
+  desserts: {
+    label: "Desserts",
+    items: [
+      { name: "Gulab Jamun", desc: "Soft milk-solid dumplings soaked in rose sugar syrup", price: 120, emoji: "🍮", tags: ["veg", "special"] },
+      { name: "Kulfi", desc: "Traditional Indian ice cream, pistachio & rose flavour", price: 100, emoji: "🍦", tags: ["veg"] }
+    ]
+  }
+};
+
+const tagLabels = { veg: "🌿 Veg", spicy: "🌶 Spicy", new: "✦ New", special: "★ Chef's Pick" };
+let cart = {};
+let activeFilter = 'all';
+
+function renderMenu(filter) {
+  const container = document.getElementById('menu-container');
+  container.innerHTML = '';
+
+  const keys = filter === 'all' ? Object.keys(menuData) : [filter];
+  keys.forEach(key => {
+    if (!menuData[key]) return;
+    const sec = menuData[key];
+    const secEl = document.createElement('div');
+    secEl.innerHTML = `<div class="section-title">${sec.label}</div><div class="menu-grid" id="grid-${key}"></div>`;
+    container.appendChild(secEl);
+    const grid = secEl.querySelector(`#grid-${key}`);
+    sec.items.forEach((item, i) => {
+      const id = `${key}-${i}`;
+      const tagsHtml = item.tags.map(t => `<span class="item-tag tag-${t}">${tagLabels[t]}</span>`).join('');
+      const div = document.createElement('div');
+      div.className = 'menu-item';
+      div.innerHTML = `
+        <div class="item-emoji">${item.emoji}</div>
+        <div class="item-info">
+          <div class="item-name">${item.name}</div>
+          <div class="item-desc">${item.desc}</div>
+          <div class="item-tags">${tagsHtml}</div>
+        </div>
+        <div class="item-right">
+          <div class="item-price">₹${item.price}</div>
+          <button class="add-btn" id="btn-${id}" onclick="addToCart('${id}', '${item.name}', ${item.price})">+</button>
+        </div>
+      `;
+      grid.appendChild(div);
+    });
+  });
+}
+
+function filterMenu(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = filter;
+  renderMenu(filter);
+}
+
+function addToCart(id, name, price) {
+  if (!cart[id]) cart[id] = { name, price, qty: 0 };
+  cart[id].qty++;
+  const btn = document.getElementById('btn-' + id);
+  const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+  btn.textContent = cart[id].qty;
+  btn.style.background = 'rgba(200,146,42,0.2)';
+  btn.style.borderColor = '#c8922a';
+  btn.style.color = '#c8922a';
+  document.getElementById('cart-count').textContent = total + (total === 1 ? ' item' : ' items');
+}
+
+function placeOrder() {
+  const items = Object.values(cart).filter(i => i.qty > 0);
+  if (!items.length) { alert('Add items to your order first!'); return; }
+  const summary = items.map(i => `${i.qty}x ${i.name} — ₹${i.price * i.qty}`).join('\n');
+  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+  alert(`Order sent to kitchen!\n\n${summary}\n\nTotal: ₹${total}\n\nYour waiter will confirm shortly.`);
+}
+
+renderMenu('all');
+</script>
